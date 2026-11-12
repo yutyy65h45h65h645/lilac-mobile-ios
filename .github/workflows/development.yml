@@ -8,8 +8,13 @@ on:
 jobs:
   build:
     name: Build Lilac IPA
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
+      - name: Use the newest Xcode (the launcher uses the iOS 26 SDK)
+        run: |
+          sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)"
+          xcodebuild -version
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
