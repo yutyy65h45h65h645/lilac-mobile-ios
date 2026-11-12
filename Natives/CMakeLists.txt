@@ -164,6 +164,7 @@ add_executable(AngelAuraAmethyst
   PLPreferences.m
   PLPrefTableViewController.m
   PLProfiles.m
+  lilac/LilacSetup.m
   SceneDelegate.m
   SceneExternalDelegate.m
   SurfaceViewController.m

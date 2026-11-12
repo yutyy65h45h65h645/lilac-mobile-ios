@@ -1,3 +1,4 @@
+#import "lilac/LilacSetup.h"
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 #import "authenticator/BaseAuthenticator.h"
 #import "AFNetworking.h"
@@ -73,6 +74,10 @@ static void *ProgressObserverContext = &ProgressObserverContext;
     self.versionPickerView.dataSource = self;
 
     [self reloadProfileList];
+    [LilacSetup runWithCompletion:^(NSError *error) {
+        if (error) showDialog(@"Lilac", [NSString stringWithFormat:@"Could not update Lilac (%@). Your current Lilac still works.", error.localizedDescription]);
+        [self reloadProfileList];
+    }];
 
     self.versionTextField.inputView = self.versionPickerView;
     [self.versionTextField setupDoneButtonWithTarget:self action:@selector(versionClosePicker)];
